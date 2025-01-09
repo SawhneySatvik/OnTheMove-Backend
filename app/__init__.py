@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -14,7 +14,7 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def home():
-    return '<h1>Hello</h1>'
+    return jsonify({'message':'There will be data here'})
 
 from app.blueprints import auth_bp
 app.register_blueprint(auth_bp)

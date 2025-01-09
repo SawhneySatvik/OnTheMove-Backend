@@ -15,8 +15,8 @@ class User(db.Model):
     date_of_birth = db.Column(db.Date, nullable=True)
     bio = db.Column(db.Text, nullable=True)
     verification_status = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now)
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # Relationships
     rides = db.relationship('Ride', backref='creator', lazy=True)

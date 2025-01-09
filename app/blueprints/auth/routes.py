@@ -1,5 +1,6 @@
 from flask import request, jsonify
 from app.blueprints.auth import auth_bp
+from app.services.auth import register_user, login_user
 
 @auth_bp.route('/')
 def auth_home():
@@ -8,11 +9,18 @@ def auth_home():
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    return data.jsonify()
+    if not data:
+        return jsonify({'error':"Request body must be JSON"}),400
+    response, status = register_user(data)
+    return response, status
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    return '<h1>Login Route</h1>'
+    data = request.get_json()
+    if not data:
+        return jsonify({'error':"Request body must be JSON"}),400
+    response, status = login_user(data)
+    return response, status
 
 @auth_bp.route('/verify', methods=['POST'])
 def verify():
