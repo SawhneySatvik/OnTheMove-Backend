@@ -35,5 +35,9 @@ def handle_options_request():
 def hello():
     return jsonify({"message": "Hello, world!"})
 
-from app.blueprints import auth_bp
+from app.blueprints import auth_bp, users_bp, vehicles_bp, trips_bp
+
 app.register_blueprint(auth_bp, url_prefix="/auth")
+app.register_blueprint(users_bp, url_prefix="/users")
+app.register_blueprint(vehicles_bp, url_prefix="/vehicles")
+app.register_blueprint(trips_bp, url_prefix="/trips")
